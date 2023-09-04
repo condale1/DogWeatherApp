@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Is my pup safe?</title>
+  </head>
+  <body>
+    <main class="mx-auto d-flex justify-content-center">
+      <div
+        class="card m-5 px-md-5 px-sm-1 cb1 text-center bg-transparent align-items-center col-8-md"
+      >
+        <div class="card-body col-8-md">
+          <h1 class="card-title">Is it safe to walk my Pupper?!</h1>
+          <!-- Progress Bar -->
+          <ul
+            class="form-stepper form-stepper-horizontal text-center mx-auto pl-0 mt-5"
+          >
+            <!-- Step 1 -->
+            <li
+              class="form-stepper-active text-center form-stepper-list"
+              step="1"
+            >
+              <a class="mx-2">
+                <span class="form-stepper-circle">
+                  <span>1</span>
+                </span>
+                <div class="label">Dog Details</div>
+              </a>
+            </li>
+            <!-- Step 2 -->
+            <li
+              class="form-stepper-unfinished text-center form-stepper-list"
+              step="2"
+            >
+              <a class="mx-2">
+                <span class="form-stepper-circle text-muted">
+                  <span>2</span>
+                </span>
+                <div class="label text-muted">Location Search</div>
+              </a>
+            </li>
+            <!-- Step 3 -->
+            <li
+              class="form-stepper-unfinished text-center form-stepper-list"
+              step="3"
+            >
+              <a class="mx-2">
+                <span class="form-stepper-circle text-muted">
+                  <span>3</span>
+                </span>
+                <div class="label text-muted">Surface Details</div>
+              </a>
+            </li>
+            <!-- Step 4 -->
+            <li
+              class="form-stepper-unfinished text-center form-stepper-list"
+              step="4"
+            >
+              <a class="mx-2">
+                <span class="form-stepper-circle text-muted">
+                  <span>3</span>
+                </span>
+                <div class="label text-muted">Results</div>
+              </a>
+            </li>
+          </ul>
+          </ul>
+          <!-- Step Wise Form Content -->
+          <form
+            id="dogSafetyForm"
+            name="dogSafetyForm"
+            enctype="multipart/form-data"
+            method="POST"
+          >
+            <!-- Step 1 Content -->
+            <section id="step-1" class="form-step">
+              <h2 class="font-normal">Pupper Details</h2>
+              <!-- Step 1 input fields -->
+              <div class="mt-3">
+                  <div class="form-floating my-3">
+                    <select
+                      class="form-select"
+                      id="dogAgeSelect"
+                      aria-label="Select dropdown for Dog Age"
+                    >
+                      <option selected>Please select</option>
+                      <option value="1">0-1</option>
+                      <option value="2">1-10</option>
+                      <option value="3">10+</option>
+                    </select>
+                    <label for="dogAgeSelect">Age</label>
+                  </div>
+                  <div class="form-floating my-3 px-sm-1">
+                    <select
+                      class="form-select"
+                      id="dogHairSelect"
+                      aria-label="Select dropdown for Dog Hair Length"
+                    >
+                      <option selected>Please select</option>
+                      <option value="1">Short</option>
+                      <option value="2">Regular</option>
+                      <option value="3">Long</option>
+                    </select>
+                    <label for="dogHairSelect">Hair Length</label>
+                  </div>
+                  <div class="form-floating">
+                    <select
+                      class="form-select"
+                      id="dogWeightSelect"
+                      aria-label="Select dropdown for Dog Weight"
+                    >
+                      <option selected>Please select</option>
+                      <option value="1">Underweight</option>
+                      <option value="2">Ideal</option>
+                      <option value="3">Overweight</option>
+                    </select>
+                    <label for="dogWeightSelect">Weight class</label>
+                  </div>
+              </div>
+              <div class="mt-3">
+                <button
+                  class="button btn-navigate-form-step btn-next"
+                  type="button"
+                  step_number="2"
+                >
+                  Next
+                </button>
+              </div>
+            </section>
+            <!-- Step 2 Content, default hidden on page load. -->
+            <section id="step-2" class="form-step d-none">
+              <h2 class="font-normal">Location Search</h2>
+              <!-- Step 2 input fields -->
+              <div class="mt-3">
+                <div class="input-group rounded mt-3">
+                  <input
+                    type="search"
+                    class="form-control bg-transparent shadow-none"
+                    id="cityName"
+                    placeholder="Location"
+                    aria-label="Location Search"
+                    autocomplete="off"
+                    required
+                  />
+              </div>
+              <div id="suggestionsContainer">
+                <ul id="suggestionsList" class="suggestions-list list-group">
+                  <!-- Suggestions will be dynamically added here -->
+                </ul>
+              </div>
+              <div class="mt-3">
+                <button
+                  class="button btn-navigate-form-step"
+                  type="button"
+                  step_number="1"
+                >
+                  Prev
+                </button>
+                <button
+                  class="button btn-navigate-form-step btn-next"
+                  type="button"
+                  step_number="3"
+                >
+                  Next
+                </button>
+              </div>
+            </section>
+            <!-- Step 3 Content, default hidden on page load. -->
+            <section id="step-3" class="form-step d-none">
+              <h2 class="font-normal">Surface Details</h2>
+              <!-- Step 3 input fields -->
+              <div class="mt-3">
+                <div class="input-group rounded mt-3">
+                  <div class="form-floating">
+                    <select
+                      class="form-select"
+                      id="surfaceSelect"
+                      aria-label="Select dropdown for walking surface"
+                    >
+                      <option selected>Please select</option>
+                      <option value="1">Asphalt</option>
+                      <option value="2">Grass/Soft Mud</option>
+                      <option value="3">Hard Mud</option>
+                    </select>
+                    <label for="surfaceSelect">Surface</label>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-3 ">
+                <button
+                  class="button btn-navigate-form-step"
+                  type="button"
+                  step_number="2"
+                >
+                  Prev
+                </button>
+                <button
+                  class="button btn-navigate-form-step btn-next"
+                  type="button"
+                  step_number="4"
+                >
+                  Submit
+                </button>
+              </div>
+            </section>
+            <!-- Step 4 Content, default hidden on page load. -->
+            <section id="step-4" class="form-step d-none">
+              <h2 class="font-normal">Results</h2>
+              <!-- Step 4 Output Fields -->
+              <div class="mt-3">
+                <div class="weatherDetails">
+                  <h5>Based on the info you have supplied about your pup,</h5>
+                  <h5>The next suitable time to walk your pup in that area is:</h5>
+                  <p>
+                    This is based on the latest research and the data held
+                    <a
+                      href="https://www.vets-now.com/summer/your-dog-walking-temperature-guide/"
+                      style="color: Black"
+                      target="_blank"
+                      >here</a
+                    >
+                  </p>
+                </div>
+              </div>
+              <div class="mt-3">
+                <button
+                  class="button btn-navigate-form-step"
+                  type="button"
+                  step_number="3"
+                >
+                  Prev
+                </button>
+              </div>
+            </section>
+          </form>
+          <!-- Step 4/Results -->
+          
+        </div>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrSpWjoO9YpdbSqzV5y8dsT-3Dgf8d8tI&libraries=places"></script>
+  </body>
+</html>
